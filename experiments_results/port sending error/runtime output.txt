@@ -1,0 +1,151 @@
+(.venv) PS E:\school\Masterat\AI in sisteme de securitate informatica\Proiect1> python .\feature_extraction.py h1.csv h1_features.csv 1.0
+Loading h1.csv...
+Loaded 44384 packets
+
+Extracting features with 1.0s time windows...
+Time range: 0.00s to 53.79s
+Creating 54 time windows...
+
+Extracted 54 feature windows
+Features: ['time_window_start', 'total_packets', 'total_bytes', 'packets_per_second', 'bytes_per_second', 'avg_packet_size', 'std_packet_size', 'tcp_ratio', 'udp_ratio', 'icmp_ratio', 'syn_count', 'ack_count', 'fin_count', 'rst_count', 'syn_ack_ratio', 'unique_dst_ports', 'port_diversity', 'unique_src_ips', 'unique_dst_ips', 'unique_connections']
+
+Features saved to h1_features.csv
+Shape: (54, 20)
+
+============================================================
+FEATURE SUMMARY
+============================================================
+
+Number of time windows: 54
+
+Key statistics:
+  Packets/sec - Mean: 821.93, Max: 1802.00
+  Unique ports - Mean: 0.00, Max: 0
+  Port diversity - Mean: 0.0000, Max: 0.0000
+  SYN/ACK ratio - Mean: 0.00, Max: 0.00
+
+============================================================
+POTENTIAL ATTACK DETECTION (Threshold-based)
+============================================================
+
+✓ No obvious attack patterns detected with simple thresholds
+(.venv) PS E:\school\Masterat\AI in sisteme de securitate informatica\Proiect1> python .\traffic_detector.py h1_features.csv 10 30
+
+============================================================
+AI-BASED PORT SCAN ATTACK DETECTOR
+============================================================
+
+Features file: h1_features.csv
+Attack period: 10.0s - 30.0s
+Loading features from h1_features.csv...
+Loaded 54 feature windows
+Columns: ['time_window_start', 'total_packets', 'total_bytes', 'packets_per_second', 'bytes_per_second', 'avg_packet_size', 'std_packet_size', 'tcp_ratio', 'udp_ratio', 'icmp_ratio', 'syn_count', 'ack_count', 'fin_count', 'rst_count', 'syn_ack_ratio', 'unique_dst_ports', 'port_diversity', 'unique_src_ips', 'unique_dst_ips', 'unique_connections']
+
+Labeling data (Attack period: 10.0s - 30.0s)...
+Normal windows: 34
+Attack windows: 20
+
+Preparing data for ML...
+Using 19 features:
+  - total_packets
+  - total_bytes
+  - packets_per_second
+  - bytes_per_second
+  - avg_packet_size
+  - std_packet_size
+  - tcp_ratio
+  - udp_ratio
+  - icmp_ratio
+  - syn_count
+  - ack_count
+  - fin_count
+  - rst_count
+  - syn_ack_ratio
+  - unique_dst_ports
+  - port_diversity
+  - unique_src_ips
+  - unique_dst_ips
+  - unique_connections
+
+============================================================
+TRAINING RANDOM FOREST CLASSIFIER
+============================================================
+
+Training set: 37 samples
+Test set: 17 samples
+
+Training Random Forest...
+
+============================================================
+MODEL EVALUATION
+============================================================
+
+Accuracy: 0.7059 (70.59%)
+
+Classification Report:
+              precision    recall  f1-score   support
+
+      Normal       0.75      0.82      0.78        11
+      Attack       0.60      0.50      0.55         6
+
+    accuracy                           0.71        17
+   macro avg       0.68      0.66      0.66        17
+weighted avg       0.70      0.71      0.70        17
+
+
+Confusion Matrix:
+[[9 2]
+ [3 3]]
+
+True Negatives: 9 | False Positives: 2
+False Negatives: 3 | True Positives: 3
+
+============================================================
+FEATURE IMPORTANCE (Top 10)
+============================================================
+
+           feature  importance
+     total_packets    0.190226
+   std_packet_size    0.183604
+   avg_packet_size    0.182395
+packets_per_second    0.166427
+  bytes_per_second    0.158602
+       total_bytes    0.115326
+unique_connections    0.003421
+         udp_ratio    0.000000
+        icmp_ratio    0.000000
+         syn_count    0.000000
+
+Full feature importance saved to feature_importance.csv
+
+============================================================
+UNSUPERVISED ANOMALY DETECTION (Isolation Forest)
+============================================================
+
+Training Isolation Forest...
+
+Detected 6 anomalous windows (11.11%)
+
+Anomalous time periods:
+  Time 0.0s: Ports=0, Packets/s=4.0, Diversity=0.000
+  Time 1.0s: Ports=0, Packets/s=136.0, Diversity=0.000
+  Time 13.0s: Ports=0, Packets/s=1802.0, Diversity=0.000
+  Time 23.0s: Ports=0, Packets/s=941.0, Diversity=0.000
+  Time 39.0s: Ports=0, Packets/s=918.0, Diversity=0.000
+  Time 53.0s: Ports=0, Packets/s=649.0, Diversity=0.000
+
+============================================================
+GENERATING VISUALIZATIONS
+============================================================
+
+Visualizations saved to detection_results.png
+
+============================================================
+DETECTION COMPLETE!
+============================================================
+
+Output files:
+  - feature_importance.csv: Feature importance rankings
+  - detection_results.png: Visualization plots
+
+✓ Port scan attack detection completed successfully!

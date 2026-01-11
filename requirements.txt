@@ -1,0 +1,22 @@
+# Network Simulation
+mininet
+
+# Packet manipulation and capture
+scapy
+
+# Data processing and analysis
+pandas
+numpy
+
+# Machine Learning
+scikit-learn
+
+# Visualization
+matplotlib
+seaborn
+
+# Note: Additional system dependencies:
+# - tcpdump
+# - tshark (wireshark)
+# - iperf
+# - tcpreplay
