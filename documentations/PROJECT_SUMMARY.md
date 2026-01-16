@@ -149,12 +149,12 @@ Time (s)  |  Activity
 
 ## Key Features for Detection
 
-| Feature | Normal | Attack | Ratio |
-|---------|--------|--------|-------|
-| unique_dst_ports | 1-5 | 100-1000 | **200x** |
-| port_diversity | 0.01 | 0.9 | **90x** |
-| syn_ack_ratio | ~1.0 | >5 | **5x** |
-| packets_per_second | 10-50 | 500+ | **10x+** |
+| Feature            | Normal | Attack   | Ratio    |
+|--------------------|--------|----------|----------|
+| unique_dst_ports   | 1-5    | 100-1000 | **200x** |
+| port_diversity     | 0.01   | 0.9      | **90x**  |
+| syn_ack_ratio      | ~1.0   | >5       | **5x**   |
+| packets_per_second | 10-50  | 500+     | **10x+** |
 
 The huge difference makes ML detection very accurate!
 
