@@ -127,13 +127,13 @@ python3 traffic_detector.py /tmp/h1_features.csv 10 30
 
 The AI model identifies port scanning based on these features:
 
-| Feature | Normal Traffic | Port Scan Attack |
-|---------|----------------|------------------|
-| **unique_dst_ports** | Low (1-5) | **High (100-1000)** ⭐ |
-| **port_diversity** | Low (~0.01) | **High (~0.9)** ⭐ |
-| **syn_ack_ratio** | ~1.0 | **High (>2)** ⭐ |
-| **packets_per_second** | Moderate | Very High |
-| **syn_count** | Low | Very High |
+| Feature                | Normal Traffic | Port Scan Attack        |
+|------------------------|----------------|-------------------------|
+| **unique_dst_ports**   | Low (1-5)      | **High (100-1000)** ⭐  |
+| **port_diversity**     | Low (~0.01)    | **High (~0.9)** ⭐      |
+| **syn_ack_ratio**      | ~1.0           | **High (>2)** ⭐        |
+| **packets_per_second** | Moderate       | Very High               |
+| **syn_count**          | Low            | Very High               |
 
 ⭐ = Most important features
 
