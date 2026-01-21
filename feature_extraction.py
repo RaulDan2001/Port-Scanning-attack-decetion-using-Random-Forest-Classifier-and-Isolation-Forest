@@ -41,7 +41,7 @@ class TrafficFeatureExtractor:
                     self.df['frame.time_relative'], errors='coerce'
                 )
             
-            # IMPROVED: Convert port columns to numeric, handling empty values
+            # Convert port columns to numeric, handling empty values
             for port_col in ['tcp.srcport', 'tcp.dstport', 'udp.srcport', 'udp.dstport']:
                 if port_col in self.df.columns:
                     # Replace empty strings with NaN, then convert to numeric
@@ -127,7 +127,7 @@ class TrafficFeatureExtractor:
         return features_df
     
     def _extract_window_features(self, window_df, window_start):
-        """Extract features for a single time window - IMPROVED PROTOCOL DETECTION"""
+        """Extract features for a single time window """
         features = {
             'time_window_start': window_start,
             'total_packets': len(window_df),
@@ -148,7 +148,7 @@ class TrafficFeatureExtractor:
             features['avg_packet_size'] = 0
             features['std_packet_size'] = 0
         
-        # Protocol distribution - IMPROVED: Check ip.proto OR presence of port columns
+        # Protocol distribution - Check ip.proto OR presence of port columns
         tcp_df = pd.DataFrame()
         udp_df = pd.DataFrame()
         
@@ -252,9 +252,9 @@ class TrafficFeatureExtractor:
             
             # Alert if port scan detected
             if unique_dst_ports > 100:
-                print(f"  ⚠️  Window {window_start:.1f}s: {unique_dst_ports} unique ports (PORT SCAN!)")
+                print(f"    Window {window_start:.1f}s: {unique_dst_ports} unique ports (PORT SCAN!)")
             elif unique_dst_ports > 50:
-                print(f"  📊 Window {window_start:.1f}s: {unique_dst_ports} unique ports")
+                print(f"   Window {window_start:.1f}s: {unique_dst_ports} unique ports")
             
             # Unique IPs
             if 'ip.src' in tcp_df.columns:

@@ -28,7 +28,7 @@ Key statistics:
 POTENTIAL ATTACK DETECTION (Threshold-based)
 ============================================================
 
-✓ No obvious attack patterns detected with simple thresholds
+ No obvious attack patterns detected with simple thresholds
 (.venv) PS E:\school\Masterat\AI in sisteme de securitate informatica\Proiect1> python .\traffic_detector.py h1_features.csv 10 30
 
 ============================================================
@@ -147,5 +147,3 @@ DETECTION COMPLETE!
 Output files:
   - feature_importance.csv: Feature importance rankings
   - detection_results.png: Visualization plots
-
-✓ Port scan attack detection completed successfully!

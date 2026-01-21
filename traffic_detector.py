@@ -412,7 +412,7 @@ def main():
     print("\nOutput files:")
     print("  - feature_importance.csv: Feature importance rankings")
     print("  - detection_results.png: Visualization plots")
-    print("\n✓ Port scan attack detection completed successfully!")
+    print("\n  Port scan attack detection completed successfully!")
 
 
 if __name__ == '__main__':
